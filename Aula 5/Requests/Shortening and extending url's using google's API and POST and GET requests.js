@@ -20,7 +20,10 @@ function expandUrl() {
   const urlToExpand = url + '?key=' + apiKey +
 '&shortUrl=' + $inputField.val();
   
-  const xhr = new XMLHttpRequest();
+  $.getJSON(urlToExpand, response => {
+  $responseField.append('<p>Your expanded url is: </p><p>' +
+  response.longUrl + '</p>');
+});
   
   xhr.responseType = 'json';
   
@@ -30,7 +33,6 @@ function expandUrl() {
 		}
   }
   xhr.open('GET', urlToExpand);
-  xhr.send();
   
 }
 
@@ -40,23 +42,23 @@ function shortenUrl() {
   
   const urlToShorten = $inputField.val();
   
-  const data = JSON.stringify({longUrl: urlToShorten});
+  $.post({
+    
+    url: urlWithKey,
+    data: JSON.stringify({longUrl: urlToShorten}),
+    dataType: 'json',
+    contentType: 'application/json',
+    
+    success(response){
+      $responseField.append('<p>Your shortened url is: </p><p>' + response.id + '</p>');
+    },
+    
+    error(jqXHR, status, errorThrown){
+      console.log(jqXHR);
+    }
+    
+  });
   
-  const xhr = new XMLHttpRequest();
-  
-  xhr.responseType = 'json';
-  
-  xhr.onreadystatechange = function(){
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-  		$responseField.append('<p>Your shortened url is: </p><p>' + xhr.response.id + '</p>');
-		}
-  }
-  
-  xhr.open('POST', urlWithKey);
-  
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  
-  xhr.send(data);
 }
 
 function expand() {
