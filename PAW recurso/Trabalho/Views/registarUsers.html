@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Cenas - Registar Utilizadores</title>
+
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/mobile.css" media="screen and (max-width: 400px)" type="text/css" />
+</head>
+
+<body>
+    <h1>Cenas - Administração</h1>
+
+    <div>
+        <form id="addUserForm">
+
+            <h2>Dados do utilizador:</h2>
+
+            <label class="Tipo">Tipo do utilizador:</label>
+            <select>
+                <option value="Administrador">Administrador</option>
+                <option value="Assistente">Assistente</option>
+            </select>
+
+            <label for="nome">Nome: </label>
+            <input class="userNome" required id="nome" type="text" maxlength="30" name="nome" placeholder="Insira o nome do utilizador...">
+            <label for="password">Password: </label>
+            <input class="userPassword" required id="password" type="password" name="password" placeholder="Insira a password do utilizador...">
+
+            <p>
+                <input type="submit" value="Submeter" />
+                <input type="submit" value="Cancelar" onclick="location.href='admin.html';" />
+            </p>
+
+        </form>
+    </div>
+
+</body>
+
+</html>
