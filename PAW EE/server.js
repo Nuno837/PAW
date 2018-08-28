@@ -62,10 +62,10 @@ app.set('views','views');
 
 //CONEXAO BASE DE DADOS
 global.connection = mysql.createConnection({
-	host     : 'webitcloud.net',
-	user     : 'webitclo_A156',
-	password : 'PW1718A156732',
-	database : 'webitclo_A15610',
+	host     : 'localhost',
+	user     : 'root',
+	password : 'root',
+	database : 'mydb',
 }).on('enqueue', function (sequence) {
 	if ('Query' === sequence.constructor.name) {
 		console.log(sequence.sql);
